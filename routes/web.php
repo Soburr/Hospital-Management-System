@@ -25,8 +25,12 @@ Route::get('/', function() {
          return redirect()->route('/home');
     }
 
-    return view('welcome');
+    return view('user.index');
 });
 
 Route::middleware('auth')->get('/home', 'App\Http\Controllers\HomeController@redirect')->name('home');
-
+Route::middleware('auth')->get('/about', 'App\Http\Controllers\HomeController@about')->name('about');
+Route::middleware('auth')->get('/contact', 'App\Http\Controllers\HomeController@contact')->name('contact');
+Route::middleware('auth')->get('/blog', 'App\Http\Controllers\HomeController@blog')->name('blog');
+Route::middleware('auth')->get('/doctors', 'App\Http\Controllers\HomeController@doctors')->name('doctors');
+Route::middleware('auth')->get('/logout', 'App\Http\Controllers\HomeController@logout')->name('logout');
