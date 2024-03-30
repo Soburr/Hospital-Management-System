@@ -96,16 +96,13 @@
 
                     @if (Route::has('login'))
                       @auth
-                      <form method="POST" action="{{ route('logout') }}" x-data>
+                      <form method="POST" action="{{ route('logout') }}">
                         @csrf
-
-                        <a class="btn btn-danger ml-lg-3" href="{{ route('logout') }}"
-                                 @click.prevent="$root.submit();">
-                            {{ __('Log Out') }}
-                      </a>
-                    </form>
-                      @else
-
+                           <a class="btn btn-danger ml-lg-3" href="{{ route('logout') }}">
+                               {{ __('Log Out') }}
+                           </a>
+                     </form>
+                    @else
 
                     <li class="nav-item">
                         <a class="btn btn-primary ml-lg-3" href="{{ route('login') }}">Login</a>
@@ -113,7 +110,7 @@
                     <li class="nav-item">
                         <a class="btn btn-primary ml-lg-3" href="{{ route('register') }}">Register</a>
                     </li>
-                    @endauth
+                       @endauth
                     @endif
                 </ul>
             </div> <!-- .navbar-collapse -->

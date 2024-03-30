@@ -21,6 +21,13 @@ class HomeController extends Controller
          }
     }
 
+    public function name () {
+        $student = Auth::user();
+
+        $name = $student->name;
+        return view('admin.home', ['name' => $name]);
+    }
+
     public function about () {
         return view('user.about');
     }
