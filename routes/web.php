@@ -4,6 +4,10 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\DoctorController;
+use App\Http\Controllers\AboutController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -30,10 +34,12 @@ Route::get('/', function() {
 
 Route::middleware('auth')->get('/home', 'App\Http\Controllers\HomeController@redirect')->name('home');
 Route::middleware('auth')->get('/home', 'App\Http\Controllers\HomeController@name');
-Route::middleware('auth')->get('/about', 'App\Http\Controllers\HomeController@about')->name('about');
-Route::middleware('auth')->get('/contact', 'App\Http\Controllers\HomeController@contact')->name('contact');
-Route::middleware('auth')->get('/blog', 'App\Http\Controllers\HomeController@blog')->name('blog');
-Route::middleware('auth')->get('/doctors', 'App\Http\Controllers\HomeController@doctors')->name('doctors');
+
+Route::middleware('auth')->get('/about', 'App\Http\Controllers\AboutController@about')->name('about');
+Route::middleware('auth')->get('/contact', 'App\Http\Controllers\ContactController@contact')->name('contact');
+Route::middleware('auth')->get('/blog', 'App\Http\Controllers\BlogController@blog')->name('blog');
+Route::middleware('auth')->get('/doctors', 'App\Http\Controllers\DoctorController@doctors')->name('doctors');
+
 Route::middleware('auth')->get('/logout', 'App\Http\Controllers\HomeController@logout')->name('logout');
 
 Route::middleware('auth')->get('/add-doctors', 'App\Http\Controllers\AdminController@adddocs')->name('add-doctors');

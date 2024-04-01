@@ -22,26 +22,24 @@ class HomeController extends Controller
     }
 
     public function name () {
-        $patient = Auth::user();
+        if (Auth::id()) {
+            if(Auth::user()->usertype=='0') {
+                $patient = Auth::user();
 
-        $name = $patient->name;
-        return view('admin.home', ['name' => $name]);
-    }
+                $name = $patient->name;
+                return view('user.index', ['name' => $name]);
+             }
+             else {
+                $admin = Auth::user();
 
-    public function about () {
-        return view('user.about');
-    }
+                $name = $admin->name;
+                return view('admin.home', ['name' => $name]);
+            }
+        }
+        // $patient = Auth::user();
 
-    public function doctors () {
-        return view('user.doctors');
-    }
-
-    public function blog () {
-        return view('user.blog');
-    }
-
-    public function contact () {
-        return view('user.contact');
+        // $name = $patient->name;
+        // return view('admin.home', ['name' => $name]);
     }
 
     public function logout () {
