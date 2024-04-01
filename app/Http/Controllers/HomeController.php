@@ -22,9 +22,9 @@ class HomeController extends Controller
     }
 
     public function name () {
-        $student = Auth::user();
+        $patient = Auth::user();
 
-        $name = $student->name;
+        $name = $patient->name;
         return view('admin.home', ['name' => $name]);
     }
 

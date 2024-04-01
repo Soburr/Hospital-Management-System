@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AdminController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -18,7 +19,6 @@ use App\Http\Controllers\HomeController;
 //     })->name('dashboard');
 // });
 
-// Route::get('/home', 'App\Http\Controllers\HomeController@redirect');
 
 Route::get('/', function() {
     if(Auth::check()) {
@@ -35,3 +35,8 @@ Route::middleware('auth')->get('/contact', 'App\Http\Controllers\HomeController@
 Route::middleware('auth')->get('/blog', 'App\Http\Controllers\HomeController@blog')->name('blog');
 Route::middleware('auth')->get('/doctors', 'App\Http\Controllers\HomeController@doctors')->name('doctors');
 Route::middleware('auth')->get('/logout', 'App\Http\Controllers\HomeController@logout')->name('logout');
+
+Route::middleware('auth')->get('/add-doctors', 'App\Http\Controllers\AdminController@adddocs')->name('add-doctors');
+Route::middleware('auth')->get('/add-doctors', 'App\Http\Controllers\AdminController@name');
+
+Route::middleware('auth')->post('/upload-doctor', 'App\Http\Controllers\AdminController@upload');
