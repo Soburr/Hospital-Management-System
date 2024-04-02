@@ -34,6 +34,7 @@ Route::get('/', function() {
 
 Route::middleware('auth')->get('/home', 'App\Http\Controllers\HomeController@redirect')->name('home');
 Route::middleware('auth')->get('/home', 'App\Http\Controllers\HomeController@name');
+Route::get('/', 'App\Http\Controllers\HomeController@docview');
 
 Route::middleware('auth')->get('/about', 'App\Http\Controllers\AboutController@about')->name('about');
 Route::middleware('auth')->get('/contact', 'App\Http\Controllers\ContactController@contact')->name('contact');

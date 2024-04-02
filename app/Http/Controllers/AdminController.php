@@ -27,7 +27,7 @@ class AdminController extends Controller
 
         $imageName = time() . '-' . $image->getClientOriginalExtension();
 
-        $test=$request->file->move(public_path('doctorimage'), $imageName);
+        $request->file->move(public_path('doctorimage'), $imageName);
 
         $doctor = Doctor::create([
             'name' => $request->input('name'),
