@@ -57,24 +57,13 @@ class HomeController extends Controller
           'doctor' => 'required',
           'number' => 'required|string|max:255',
           'message' => 'required|string|max:255',
-          'status' => 'Is Pending',
-          'user_id' => 'required|exists:user_id',
        ]);
 
-       $appointment = new Appointment([
-           'name' => $request->input('name'),
-           'email' => $request->input('email'),
-           'date' => $request->input('date'),
-           'doctor' => $request->input('doctor'),
-           'number' => $request->input('number'),
-           'message' => $request->input('message'),
-        //    'status' => $request->input('status'),
-        //    'user_id' => $request->input('user_id')
-       ]);
+       $validatedData['user_id'] = auth()->id();
+       $validatedData['status'] = 'Pending';
 
-       $appointment->save();
-
-       return redirect('/home')->with('success', 'Appointment Made Successfully');
+       Appointment::create($validatedData);
+            return redirect('/home')->with('success', 'Appointment Made Successfully');
     }
 
     public function logout () {
