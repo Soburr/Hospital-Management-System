@@ -9,6 +9,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\AboutController;
 
+
 // Route::get('/', function () {
 //     return view('welcome');
 // });
@@ -47,3 +48,5 @@ Route::middleware('auth')->get('/add-doctors', 'App\Http\Controllers\AdminContro
 Route::middleware('auth')->get('/add-doctors', 'App\Http\Controllers\AdminController@name');
 
 Route::middleware('auth')->post('/upload-doctor', 'App\Http\Controllers\AdminController@upload');
+
+Route::post('/appointment', 'App\Http\Controllers\HomeController@appointment');
