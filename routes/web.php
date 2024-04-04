@@ -50,3 +50,5 @@ Route::middleware('auth')->get('/add-doctors', 'App\Http\Controllers\AdminContro
 Route::middleware('auth')->post('/upload-doctor', 'App\Http\Controllers\AdminController@upload');
 
 Route::post('/appointment', 'App\Http\Controllers\HomeController@appointment');
+Route::get('/my-appointment', 'App\Http\Controllers\HomeController@my_appointment');
+Route::get('/cancel-appointment/{id}', 'App\Http\Controllers\HomeController@cancel_appointment');

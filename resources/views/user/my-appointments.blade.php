@@ -108,8 +108,7 @@
                                         {{ __('Log Out') }}
                                     </a>
                                 </form>
-                        @else
-
+                            @else
                                 <li class="nav-item">
                                     <a class="btn btn-primary ml-lg-3" href="{{ route('login') }}">Login</a>
                                 </li>
@@ -123,36 +122,32 @@
             </div> <!-- .container -->
         </nav>
     </header>
-    @yield('content')
 
+    <div align="center" style="padding: 70px;">
+        <table>
 
+            <tr style="background-color: #000;">
+                <th style="padding: 20px; font-size: 20px; color: white;">Doctor's Name</th>
+                <th style="padding: 20px; font-size: 20px; color: white;">Date</th>
+                <th style="padding: 20px; font-size: 20px; color: white;">Message</th>
+                <th style="padding: 20px; font-size: 20px; color: white;">Status</th>
+                <th style="padding: 20px; font-size: 20px; color: white;">Cancel Appointment</th>
+            </tr>
 
+            @foreach ($appoint as $appointment)
+                <tr style="background-color: #000;" align="center">
+                    <td style="padding: 20px; color: white;">{{ $appointment->doctor }}</td>
+                    <td style="padding: 20px; color: white;">{{ $appointment->date }}</td>
+                    <td style="padding: 20px; color: white;">{{ $appointment->message }}</td>
+                    <td style="padding: 20px; color: white;">{{ $appointment->status }}</td>
+                    <td><a class="btn btn-danger" onclick="return confirm('You will be deleting this appointment')" href="{{ url('cancel-appointment', $appointment->id) }}">Cancel</a></td>
+                </tr>
+            @endforeach
 
+        </table>
+    </div>
 
-
-
-
-    @yield('scripts')
-    {{-- <div class="page-section banner-home bg-image" style="background-image: url(../assets/img/banner-pattern.svg);">
-        <div class="container py-5 py-lg-0">
-            <div class="row align-items-center">
-                <div class="col-lg-4 wow zoomIn">
-                    <div class="img-banner d-none d-lg-block">
-                        <img src="../assets/img/mobile_app.png" alt="">
-                    </div>
-                </div>
-                <div class="col-lg-8 wow fadeInRight">
-                    <h1 class="font-weight-normal mb-3">Get easy access of all features using One Health Application
-                    </h1>
-                    <a href="#"><img src="../assets/img/google_play.svg" alt=""></a>
-                    <a href="#" class="ml-2"><img src="../assets/img/app_store.svg" alt=""></a>
-                </div>
-            </div>
-        </div>
-    </div> --}}
-    <!-- .banner-home -->
-
-    <footer class="page-footer">
+   <footer class="page-footer">
         <div class="container">
             <div class="row px-md-3">
                 <div class="col-sm-6 col-lg-3 py-3">
@@ -204,7 +199,7 @@
                 All
                 right reserved</p>
         </div>
-    </footer>
+    </footer> 
 
     <script src="assets/js/jquery-3.5.1.min.js"></script>
 

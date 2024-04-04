@@ -42,7 +42,7 @@
                    {{ session()->get('message') }}
 
                 </div>
-             @endif
+               @endif
 
 
                 <form action="{{ url('upload-doctor') }}" method="POST" enctype="multipart/form-data">

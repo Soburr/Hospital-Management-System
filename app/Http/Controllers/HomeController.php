@@ -63,9 +63,28 @@ class HomeController extends Controller
        $validatedData['status'] = 'Pending';
 
        Appointment::create($validatedData);
-            return redirect('/home')->with('success', 'Appointment Made Successfully');
+            return redirect()->back()->with('message', 'Appointment Made Successfully');
     }
 
+    public function my_appointment() {
+
+        if(Auth::id()) {
+
+            $userId = Auth::user()->id;
+            $appoint = Appointment::where('user_id', $userId)->get();
+            return view('user.my-appointments', compact('appoint'));
+
+        } else {
+            return redirect()->back();
+        }
+    }
+
+    public function cancel_appointment($id) {
+        
+        $data = Appointment::find($id);
+        $data->delete();
+        return redirect()->back();
+    }
     public function logout () {
         auth()->logout();
         return redirect('/');
