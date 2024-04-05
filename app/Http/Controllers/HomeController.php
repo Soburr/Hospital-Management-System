@@ -85,6 +85,7 @@ class HomeController extends Controller
         $data->delete();
         return redirect()->back();
     }
+    
     public function logout () {
         auth()->logout();
         return redirect('/');

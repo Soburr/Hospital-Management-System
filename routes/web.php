@@ -49,6 +49,15 @@ Route::middleware('auth')->get('/add-doctors', 'App\Http\Controllers\AdminContro
 
 Route::middleware('auth')->post('/upload-doctor', 'App\Http\Controllers\AdminController@upload');
 
-Route::post('/appointment', 'App\Http\Controllers\HomeController@appointment');
+Route::middleware('auth')->post('/appointment', 'App\Http\Controllers\HomeController@appointment');
 Route::get('/my-appointment', 'App\Http\Controllers\HomeController@my_appointment');
 Route::get('/cancel-appointment/{id}', 'App\Http\Controllers\HomeController@cancel_appointment');
+
+Route::middleware('auth')->get('/show-appointment', 'App\Http\Controllers\AdminController@show_appointment');
+
+Route::get('/approve/{id}', 'App\Http\Controllers\AdminController@approve');
+Route::get('/cancel/{id}', 'App\Http\Controllers\AdminController@cancel');
+
+Route::middleware('auth')->get('/show-doctors', 'App\Http\Controllers\AdminController@show_doctors');
+Route::get('/update-doctor/{id}', 'App\Http\Controllers\AdminController@update');
+Route::get('/delete-doctor/{id}', 'App\Http\Controllers\AdminController@delete_doctor');

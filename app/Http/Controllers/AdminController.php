@@ -2,24 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Appointment;
 use App\Models\Doctor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
-    public function adddocs () {
+    public function adddocs()
+    {
         return view('admin.add-doctors');
     }
 
-    public function name () {
+    public function name()
+    {
         $doctor = Auth::user();
 
         $name = $doctor->name;
         return view('admin.add-doctors', ['name' => $name]);
     }
 
-    public function upload (Request $request) {
+    public function upload(Request $request)
+    {
 
         $doctor = new Doctor;
 
@@ -38,6 +42,58 @@ class AdminController extends Controller
         ]);
 
         return redirect()->back()->with('message', 'Doctor Has Been Added Successfully');
+    }
+
+    public function show_appointment() {
+
+        $admin = Auth::user();
+
+        $name = $admin->name;
+        $data = Appointment::all();
+        return view('admin.show-appointment', ['data' => $data, 'name' => $name]);
+    }
+
+    public function approve ($id) {
+
+        $data = Appointment::find($id);
+        $data->status = 'Approved';
+        $data->save();
+
+        return redirect()->back();
+    }
+
+    public function cancel ($id) {
+
+        $data = Appointment::find($id);
+        $data->status = 'Cancelled';
+        $data->save();
+
+        return redirect()->back();
+    }
+
+    public function show_doctors () {
+        $admin = Auth::user();
+        $name = $admin->name;
+
+        $data = Doctor::all();
+        return view('admin.show-doctors', ['admin' => $admin, 'name' => $name, 'data' => $data]);
+    }
+
+    // public function update ($id) {
+    //     $admin = Auth::user();
+    //     $name = $admin->name;
+
+    //     $data = Doctor::find($id);
+
+    // }
+
+    public function delete_doctor ($id) {
+
+        $data = Doctor::findOrFail($id);
+        $data->delete();
+
+      return redirect()->back();
 
     }
+
 }
