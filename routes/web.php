@@ -33,7 +33,7 @@ Route::get('/', function() {
     return view('user.index');
 });
 
-Route::middleware('auth')->get('/home', 'App\Http\Controllers\HomeController@redirect')->name('home');
+Route::get('/home', 'App\Http\Controllers\HomeController@redirect')->name('home')->middleware('auth', 'verified');
 Route::middleware('auth')->get('/home', 'App\Http\Controllers\HomeController@name');
 Route::get('/', 'App\Http\Controllers\HomeController@docview');
 
@@ -60,4 +60,6 @@ Route::get('/cancel/{id}', 'App\Http\Controllers\AdminController@cancel');
 
 Route::middleware('auth')->get('/show-doctors', 'App\Http\Controllers\AdminController@show_doctors');
 Route::get('/update-doctor/{id}', 'App\Http\Controllers\AdminController@update');
+Route::post('/editdoctor/{id}', 'App\Http\Controllers\AdminController@editdoctor');
+
 Route::get('/delete-doctor/{id}', 'App\Http\Controllers\AdminController@delete_doctor');
